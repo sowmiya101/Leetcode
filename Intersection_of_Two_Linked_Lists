@@ -1,0 +1,52 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if not headA or not headB:
+            return None
+        
+        # Helper function to get length and last node of a linked list
+        def get_length_and_tail(head):
+            length = 0
+            tail = None
+            while head:
+                length += 1
+                tail = head
+                head = head.next
+            return length, tail
+        
+        # Get lengths and tails of both linked lists
+        lenA, tailA = get_length_and_tail(headA)
+        lenB, tailB = get_length_and_tail(headB)
+        
+        # If the tails are different, the lists don't intersect
+        if tailA != tailB:
+            return None
+        
+        # Reset pointers to the heads
+        currA, currB = headA, headB
+        
+        # Move the pointer of the longer list forward by the difference in lengths
+        if lenA > lenB:
+            for _ in range(lenA - lenB):
+                currA = currA.next
+        elif lenB > lenA:
+            for _ in range(lenB - lenA):
+                currB = currB.next
+        
+        # Traverse both lists simultaneously until intersection
+        while currA != currB:
+            currA = currA.next
+            currB = currB.next
+        
+        return currA
+
+# Test cases
+solution = Solution()
+
+
+
