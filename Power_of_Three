@@ -1,0 +1,6 @@
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        if n <= 0:
+            return False
+        log_res = math.log10(n) / math.log10(3)
+        return log_res.is_integer()
