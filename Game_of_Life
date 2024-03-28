@@ -1,0 +1,35 @@
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)]
+        m, n = len(board), len(board[0])
+        
+        # Helper function to count live neighbors
+        def count_live_neighbors(i, j):
+            count = 0
+            for dx, dy in directions:
+                x, y = i + dx, j + dy
+                if 0 <= x < m and 0 <= y < n and board[x][y] in (1, 2):
+                    count += 1
+            return count
+
+        # Update the board according to the rules
+        for i in range(m):
+            for j in range(n):
+                live_neighbors = count_live_neighbors(i, j)
+                if board[i][j] == 1:  # Live cell
+                    if live_neighbors < 2 or live_neighbors > 3:
+                        board[i][j] = 2  # Mark as dying
+                elif board[i][j] == 0:  # Dead cell
+                    if live_neighbors == 3:
+                        board[i][j] = -1  # Mark as becoming alive
+        
+        # Finalize the board after marking
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == 2:  # Change dying cells to dead
+                    board[i][j] = 0
+                elif board[i][j] == -1:  # Change becoming alive cells to live
+                    board[i][j] = 1
