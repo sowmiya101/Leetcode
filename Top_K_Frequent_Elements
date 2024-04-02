@@ -1,0 +1,17 @@
+# Count the frequency of each element in nums
+        counter = Counter(nums)
+        
+        # Use a min heap to keep track of the k most frequent elements
+        heap = []
+        for num, freq in counter.items():
+            heapq.heappush(heap, (freq, num))
+            if len(heap) > k:
+                heapq.heappop(heap)
+        
+        # Extract the k most frequent elements from the heap
+        result = []
+        while heap:
+            result.append(heapq.heappop(heap)[1])
+        
+        # Reverse the result to get the elements in descending order of frequency
+        return result[::-1]
