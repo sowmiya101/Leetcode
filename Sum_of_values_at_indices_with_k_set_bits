@@ -1,0 +1,15 @@
+class Solution:
+    def countSetBits(self, num: int) -> int:
+        count = 0
+        while num:
+            count += num & 1
+            num >>= 1
+        return count
+        
+    def sumIndicesWithKSetBits(self, nums: List[int], k: int) -> int:
+        total_sum = 0
+        for i in range(len(nums)):
+            set_bits_count = self.countSetBits(i)  # Count set bits in the binary representation of index i
+            if set_bits_count == k:
+                total_sum += nums[i]
+        return total_sum
