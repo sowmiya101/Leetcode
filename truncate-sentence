@@ -1,0 +1,5 @@
+class Solution:
+    def truncateSentence(self, s: str, k: int) -> str:
+        words = s.split()  # Split the sentence into words
+        truncated_sentence = ' '.join(words[:k])  # Join the first k words
+        return truncated_sentence
