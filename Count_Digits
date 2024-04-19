@@ -1,0 +1,13 @@
+def countDigits(n: int) -> int:
+    if n == 0:
+        return 1
+    
+    count = 0
+    original_n = n  # Store the original value of n
+    
+    while n != 0:
+        digit = n % 10
+        if digit != 0 and original_n % digit == 0:
+            count += 1
+        n = n // 10
+    return  count
