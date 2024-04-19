@@ -1,0 +1,10 @@
+class Solution:
+    def countDigits(self, num: int) -> int:
+        if len(str(num)) == 1:
+            return 1
+        else:
+            val = 0
+            for i in str(num):
+                if num % int(i) == 0:
+                    val += 1
+            return val
