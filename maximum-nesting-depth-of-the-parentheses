@@ -1,0 +1,7 @@
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        res, q = 0, 0
+        for r in s:
+            q += (r == '(') - (r == ')')
+            res = max(res, q)
+        return res
