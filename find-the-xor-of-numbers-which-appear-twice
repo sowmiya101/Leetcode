@@ -1,0 +1,4 @@
+class Solution:
+    def duplicateNumbersXOR(self, nums: List[int]) -> int:
+        duplicates = [num for num, cnt in Counter(nums).items() if cnt == 2]
+        return reduce(lambda x, y: x ^ y, duplicates, 0)
