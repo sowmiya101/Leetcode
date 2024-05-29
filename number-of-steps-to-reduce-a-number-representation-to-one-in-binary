@@ -1,0 +1,20 @@
+class Solution:
+    def numSteps(self, s: str) -> int:
+        l = len(s) - 1
+        care = 0
+        c = 0
+        while(l > 0):
+            if int(s[l]) + care == 0:
+                care = 0
+                c += 1
+            elif int(s[l]) + care == 2:
+                care = 1
+                c += 1
+            else:
+                care = 1
+                c += 2
+            l -= 1
+
+        if care == 1:
+            c += 1
+        return c
